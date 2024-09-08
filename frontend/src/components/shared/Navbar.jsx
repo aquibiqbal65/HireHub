@@ -5,18 +5,18 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
-    const user = false
+    const user = true
     return (
         <div className="bg-white">
             <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
                 <div>
-                    <h1 className="text-2xl font-bold">Hire<span className="text-[#f83002]">Hub</span></h1>
+                    <Link to="/"><h1 className="text-2xl font-bold">Hire<span className="text-[#ff2b2b]">Hub</span></h1></Link>
                 </div>
                 <div className="flex items-center gap-12">
-                    <ul className="flex font-semibold items-center gap-5">
-                        <li>Home</li>
-                        <li>Jobs</li>
-                        <li>Browse</li>
+                    <ul className="flex font-semibold items-center gap-5 cursor-pointer">
+                        <li className="hover:text-[#079cb6] transition-all duration-200">Home</li>
+                        <li className="hover:text-[#079cb6] transition-all duration-200">Jobs</li>
+                        <li className="hover:text-[#079cb6] transition-all duration-200">Browse</li>
                     </ul>
 
                     {
