@@ -3,9 +3,11 @@ import { Avatar, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const Navbar = () => {
-    const user = true
+    const { user } = useSelector(store => store.auth)
+    console.log(user)
     return (
         <div className="bg-white">
             <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -14,9 +16,9 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-12">
                     <ul className="flex font-semibold items-center gap-5 cursor-pointer">
-                        <li className="hover:text-[#079cb6] transition-all duration-200">Home</li>
-                        <li className="hover:text-[#079cb6] transition-all duration-200">Jobs</li>
-                        <li className="hover:text-[#079cb6] transition-all duration-200">Browse</li>
+                        <Link to="/"><li className="hover:text-[#079cb6] transition-all duration-200">Home</li></Link>
+                        <Link to="/jobs"><li className="hover:text-[#079cb6] transition-all duration-200">Jobs</li></Link>
+                        <Link to="/browse"><li className="hover:text-[#079cb6] transition-all duration-200">Browse</li></Link>
                     </ul>
 
                     {
@@ -50,11 +52,12 @@ const Navbar = () => {
                                         <div className="flex flex-col my-2 text-gray-600">
                                             <div className="flex w-fit items-center gap-2 cursor-pointer">
                                                 <User2 />
-                                                <Button variant="link">View Profile</Button>
+                                                <Link to="/profile"><Button variant="link">View Profile</Button></Link>
+
                                             </div>
                                             <div className="flex w-fit items-center gap-2 cursor-pointer">
                                                 <LogOut />
-                                                <Button variant="link">logout</Button>
+                                                <Button variant="link">Logout</Button>
                                             </div>
                                         </div>
                                     </div>

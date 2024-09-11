@@ -56,7 +56,7 @@ export const login = async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(401).json({
-        message: "Invalid credentials",
+        message: "Incorrect Password",
         success: false,
       });
     }
@@ -92,6 +92,7 @@ export const login = async (req, res) => {
       })
       .json({
         message: `Welcome back ${user.fullName}`,
+        user,
         success: true,
       });
   } catch (error) {
@@ -116,10 +117,14 @@ export const updateProfile = async (req, res) => {
     const file = req.file;
 
     // cloudinary
+    // const fileUri=getDataUri(file);
+    // const cloudResponse = await cloudinary.uploader.upload(fileUri.content)
+
+    
   
     let skillsArray;
     if(skills){
-      const skillsArray = skills.split(",");
+      skillsArray = skills.split(",");
     }
     const userId = req.id; // middleware authentication
     let user = await User.findById(userId);
@@ -140,6 +145,10 @@ export const updateProfile = async (req, res) => {
     
 
     //resume comes later here
+    // if(cloudResponse){
+    //   user.profile.resume = cloudResponse.secure_url;
+    //   user.profile.resumeOriginalName = file.originalname;
+    // }
 
     await user.save();
 

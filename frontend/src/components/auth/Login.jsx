@@ -11,7 +11,7 @@ import axios from 'axios'
 import { Button } from '../ui/button'
 import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLoading } from '@/redux/authSlice'
+import { setLoading, setUser } from '@/redux/authSlice'
 import { Loader2 } from 'lucide-react'
 
 const Login = () => {
@@ -39,6 +39,7 @@ const Login = () => {
                 withCredentials: true,
             })
             if (res.data.success) {
+                dispatch(setUser(res.data.user));
                 navigate("/")
                 toast.success(res.data.message);
             }
@@ -113,7 +114,7 @@ const Login = () => {
                     </div>
                     {
                         loading ? <Button className='mt-4 py-2 w-full text-white font-semibold rounded-lg'> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please Wait... </Button> : <Button className='mt-4 py-2 w-full text-white font-semibold bg-[#079cb6] rounded-lg transition-all duration-300 hover:bg-[#078da5]'
-                            type="login">
+                            type="submit">
                             Login
                         </Button>
                     }
